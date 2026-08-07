@@ -28,8 +28,8 @@ if numpy.any(spectra.values < 0):
     print("Warning: The reconstructed spectra contains negative energy values.")
 
 inverse_adaptation_matrix = numpy.linalg.inv(adaptation_matrix)
-reconstructed_xy = colour.XYZ_to_xyY(colour.sd_to_XYZ(spectra, cmfs=cmfs, illuminant=colour.SDS_ILLUMINANTS['E']))
-reconstructed_xy_post_adaptation = colour.XYZ_to_xyY(numpy.dot(colour.sd_to_XYZ(spectra, cmfs=cmfs, illuminant=colour.SDS_ILLUMINANTS['E']), inverse_adaptation_matrix.T))
+reconstructed_xy = colour.XYZ_to_xyY(colour.sd_to_XYZ(spectra, cmfs=cmfs, illuminant=colour.SDS_ILLUMINANTS['E'])/100)
+reconstructed_xy_post_adaptation = colour.XYZ_to_xyY(numpy.dot(colour.sd_to_XYZ(spectra, cmfs=cmfs, illuminant=colour.SDS_ILLUMINANTS['E'])/100, inverse_adaptation_matrix.T))
 
 # output_filename = f'{source_rgb_space}_({rgb[0]}_{rgb[1]}_{rgb[2]})_{reconstruction_method}.csv'
 
